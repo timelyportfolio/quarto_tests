@@ -32,7 +32,7 @@ dat <- SharedData$new(state.x77)
 reactable(dat)
 ```
 
-We add some `<script>` for JavaScript, and this is where things get a little messy. See [lines]() for the code to glue all this together.
+We add some `<script>` for JavaScript, and this is where things get a little messy. See [lines](https://github.com/timelyportfolio/quarto_tests/blob/main/examples/quarto_observable_crosstalk/quarto_observable_crosstalk.qmd#L40-L72) for the code to glue all this together.
 
 *code block here but not visible*
 
