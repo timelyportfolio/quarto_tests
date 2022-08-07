@@ -6,9 +6,9 @@ editor: visual
 
 ## Observable and Crosstalk
 
-Observable `ojs` cells and `crosstalk` can work together.  I would not say it is intuitive, but below is an example using Observable `Inputs.select` to update `crosstalk`-linked `reactable`.  Although Observable drives `htmlwidget` in this case, the communication could be the other way or bi-directional.  Also this same mechanism could be employed with other `crosstalk`-enabled htmlwidgets, such as `leaflet` and `plotly`.
+Observable `ojs` cells and `crosstalk` can work together. I would not say it is intuitive, but below is an example using Observable `Inputs.select` to update `crosstalk`-linked `reactable`. Although Observable drives `htmlwidget` in this case, the communication could be the other way or bi-directional. Also this same mechanism could be employed with other `crosstalk`-enabled htmlwidgets, such as `leaflet` and `plotly`.
 
-We first send `state.name` data to Observable from R with `ojs_define`.  This is not necessary, but I wanted to reiterate that this is possible.
+We first send `state.name` data to Observable from R with `ojs_define`. This is not necessary, but I wanted to reiterate that this is possible.
 
 ```{r}
 # send state names to Observable from R
@@ -22,7 +22,7 @@ Now we create the Observable multiple select using the `stateNames` supplied fro
 viewof selectedStates = Inputs.select(stateNames, {label: "Visited states", multiple: true})
 ```
 
-Add a basic `reactable` on `state.x77`.  Note since we do not supply a `key` in `SharedData$new()` the keys will be `rownames(state.x77)` which are the state names that populate the Observable selection output.
+Add a basic `reactable` on `state.x77`. Note since we do not supply a `key` in `SharedData$new()` the keys will be `rownames(state.x77)` which are the state names that populate the Observable selection output.
 
 ```{r warning=FALSE}
 library(crosstalk)
@@ -32,10 +32,11 @@ dat <- SharedData$new(state.x77)
 reactable(dat)
 ```
 
-We add some `<script>` for JavaScript, and this is where things get a little messy.  See [lines]() for the code to glue all this together.
+We add some `<script>` for JavaScript, and this is where things get a little messy. See [lines]() for the code to glue all this together.
 
 *code block here but not visible*
 
+```{=html}
 <script>
 // this is messy and I have to think there might be a better way
 //   but will it take modifying quarto ojs source or Inspector
@@ -69,7 +70,7 @@ wait_for_ojs().then( (ojs) => {
 }
 )
 </script>
-
+```
 JavaScript will not know our `crosstalk` group selection, so add it to `window/global` for reference in other JavaScript.
 
 ```{r results='asis', warning=FALSE}
