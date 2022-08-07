@@ -122,12 +122,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="observable-power-of-community" class="level2">
 <h2 class="anchored" data-anchor-id="observable-power-of-community">Observable Power of Community</h2>
 <p>Quarto integrates Observable JavaScript cells which means we can leverage the amazing work of others contributed on Observable. I was surprised that none of the <code>ojs</code>examples I found show how to import from other notebooks to maximize the power of collective genius. See <a href="https://observablehq.com/@observablehq/import">observable imports</a> for more details on the deliberate efforts by Observable to allow easy integration of the work of others.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+License
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I should note to please check license before importing a notebook. Thanks Sean Lopp for the <a href="https://twitter.com/lopp_sean/status/1556292338221080577?s=20&amp;t=QRGZ1_nB-RmxUgSUkyADUg">tweet</a>. In the below example, we are safe with the <code>ISC</code> license.</p>
+</div>
+</div>
 <section id="example-with-summary-table" class="level3">
 <h3 class="anchored" data-anchor-id="example-with-summary-table">Example with <a href="https://observablehq.com/@observablehq/summary-table">Summary Table</a></h3>
 <p>As an example, we can import the very promising work from <a href="https://observablehq.com/@mkfreeman">Mike Freeman</a> on the Observable team summarizing the <code>penquins</code> data set, but if you want too bring your own data, then we can supply that feature as well. With four lines of <code>ojs</code> code, we get something pretty amazing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-startfrom="14" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 13;"><span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {viewof data} <span class="im">from</span> <span class="st">"@observablehq/summary-table"</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>viewof data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1" data-startfrom="20" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 19;"><span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {viewof data} <span class="im">from</span> <span class="st">"@observablehq/summary-table"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>viewof data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -144,8 +157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-startfrom="19" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 18;"><span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {viewof summary_data} <span class="im">from</span> <span class="st">"@observablehq/summary-table"</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>viewof summary_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2" data-startfrom="25" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {viewof summary_data} <span class="im">from</span> <span class="st">"@observablehq/summary-table"</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>viewof summary_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">

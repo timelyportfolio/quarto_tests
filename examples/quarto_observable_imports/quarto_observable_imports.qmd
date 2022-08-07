@@ -9,7 +9,7 @@ Quarto integrates Observable JavaScript cells which means we can leverage the am
 ::: callout-note
 ## License
 
-I should note to please check license before importing a notebook.  Thanks Sean Lopp for the [tweet](https://twitter.com/lopp_sean/status/1556292338221080577?s=20&t=QRGZ1_nB-RmxUgSUkyADUg).  In the below example, we are safe with the `ISC` license.
+I should note to please check license before importing a notebook. Thanks Sean Lopp for the [tweet](https://twitter.com/lopp_sean/status/1556292338221080577?s=20&t=QRGZ1_nB-RmxUgSUkyADUg). In the below example, we are safe with the `ISC` license.
 :::
 
 ### Example with [Summary Table](https://observablehq.com/@observablehq/summary-table)
