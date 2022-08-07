@@ -6,6 +6,12 @@ title: "Observable Imports in Quarto"
 
 Quarto integrates Observable JavaScript cells which means we can leverage the amazing work of others contributed on Observable. I was surprised that none of the `ojs`examples I found show how to import from other notebooks to maximize the power of collective genius. See [observable imports](https://observablehq.com/@observablehq/import) for more details on the deliberate efforts by Observable to allow easy integration of the work of others.
 
+::: callout-note
+## License
+
+I should note to please check license before importing a notebook.  Thanks Sean Lopp for the [tweet](https://twitter.com/lopp_sean/status/1556292338221080577?s=20&t=QRGZ1_nB-RmxUgSUkyADUg).  In the below example, we are safe with the `ISC` license.
+:::
+
 ### Example with [Summary Table](https://observablehq.com/@observablehq/summary-table)
 
 As an example, we can import the very promising work from [Mike Freeman](https://observablehq.com/@mkfreeman) on the Observable team summarizing the `penquins` data set, but if you want too bring your own data, then we can supply that feature as well. With four lines of `ojs` code, we get something pretty amazing.
