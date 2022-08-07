@@ -1,0 +1,86 @@
+---
+title: "Quarto Observable + Crosstalk"
+format: html
+editor: visual
+---
+
+## Observable and Crosstalk
+
+Observable `ojs` cells and `crosstalk` can work together. I would not say it is intuitive, but below is an example using Observable `Inputs.select` to update `crosstalk`-linked `reactable`. Although Observable drives `htmlwidget` in this case, the communication could be the other way or bi-directional. Also this same mechanism could be employed with other `crosstalk`-enabled htmlwidgets, such as `leaflet` and `plotly`.
+
+We first send `state.name` data to Observable from R with `ojs_define`. This is not necessary, but I wanted to reiterate that this is possible.
+
+```{r}
+# send state names to Observable from R
+ojs_define(stateNames = state.name)
+```
+
+Now we create the Observable multiple select using the `stateNames` supplied from R.
+
+```{ojs}
+// use Observable select input to allow user to pick states
+viewof selectedStates = Inputs.select(stateNames, {label: "Visited states", multiple: true})
+```
+
+Add a basic `reactable` on `state.x77`. Note since we do not supply a `key` in `SharedData$new()` the keys will be `rownames(state.x77)` which are the state names that populate the Observable selection output.
+
+```{r warning=FALSE}
+library(crosstalk)
+library(reactable)
+
+dat <- SharedData$new(state.x77)
+reactable(dat)
+```
+
+We add some `<script>` for JavaScript, and this is where things get a little messy. See [lines](https://github.com/timelyportfolio/quarto_tests/blob/main/examples/quarto_observable_crosstalk/quarto_observable_crosstalk.qmd#L40-L72) for the code to glue all this together.
+
+*code block here but not visible*
+
+```{=html}
+<script>
+// this is messy and I have to think there might be a better way
+//   but will it take modifying quarto ojs source or Inspector
+
+//   use promise mechanism to wait for ojs to be available
+const wait_for_ojs = () => {
+  return new Promise(looping);
+  function looping(resolve, reject) {
+    if (window._ojs) {
+      resolve(window._ojs)
+    } else
+      setTimeout(looping.bind(this, resolve, reject), 50)
+  }
+}
+
+// once ojs exists we will define a new variable to observe changes in selectedStates
+wait_for_ojs().then( (ojs) => {
+  ojs.ojsConnector.mainModule.variable({
+    fulfilled(value, name) {
+      console.log('selected states changed', name, value)
+      // now update crosstalk selection
+      if(value.length === 0) {
+        // if empty selection then clear
+        crosstalk_select.clear()
+      } else {
+        // not empty so update the crosstalk selection
+        crosstalk_select.set(value)
+      }
+    }
+  }).define('states_observer', ['selectedStates'], x => x);
+}
+)
+</script>
+```
+JavaScript will not know our `crosstalk` group selection, so add it to `window/global` for reference in other JavaScript.
+
+```{r results='asis', warning=FALSE}
+library(htmltools)
+cat(as.character(
+  tags$script(HTML(sprintf(
+"
+var crosstalk_select = new crosstalk.SelectionHandle('%s');
+",
+    dat$groupName()
+  )))
+))
+```
